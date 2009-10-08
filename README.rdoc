@@ -1,17 +1,17 @@
-= named_instances
+= Named Instances
 
-Description goes here.
+Provides support for named instances in Rails.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+Quick usage:
+
+class Diagnosis < ActiveRecord::Base
+  has_named_instances :name
+end
+
+>> Diagnosis.get(:diabetes_mellitus)
+=> #<Diagnosis id: 52, name: "Diabetes Mellitus", created_at: "2009-10-07 15:41:50", updated_at: "2009-10-07 15:41:50">
+
+Patches welcome, enjoy!
 
 == Copyright
 
