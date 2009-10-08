@@ -5,8 +5,11 @@ Provides support for named instances in Rails.
 Quick usage:
 
   class Diagnosis < ActiveRecord::Base
+    include NamedInstances
     has_named_instances :name
   end
+
+  Diagnosis.create :name => "Diabetes Mellitus"
 
   >> Diagnosis.get(:diabetes_mellitus)
   => #<Diagnosis id: 52, name: "Diabetes Mellitus", created_at: "2009-10-07 15:41:50", updated_at: "2009-10-07 15:41:50">
