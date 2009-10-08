@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/named_instances.rb",
+     "named_instances.gemspec",
      "test/fixtures/diagnosis.rb",
      "test/named_instances_test.rb",
      "test/rails_crutch.rb",
