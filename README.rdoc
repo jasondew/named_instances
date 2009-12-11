@@ -5,7 +5,6 @@ Provides support for named instances in Rails.
 Quick usage:
 
   class Diagnosis < ActiveRecord::Base
-    include NamedInstances
     has_named_instances :name
   end
 
