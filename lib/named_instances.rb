@@ -12,8 +12,8 @@ module NamedInstances
       @find_options = options[:find_options]
 
       after_save do
-        Rails.logger.info("Reloading #{self} named instances because of a save")
-        self.load_named_instances
+        Rails.logger.info("Reloading #{self.class} named instances because of a save")
+        self.class.load_named_instances
       end
     end
 

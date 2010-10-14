@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/named_instances.rb",
+     "lib/rails/named_instances.rb",
      "named_instances.gemspec",
      "rails/init.rb",
      "test/fixtures/diagnosis.rb",
@@ -51,6 +52,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<activesupport>, [">= 0"])
+      s.add_development_dependency(%q<active_record>, [">= 0"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
