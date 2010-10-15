@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    named_instances (0.0.4)
+    named_instances (0.1.0)
 
 GEM
   remote: http://rubygems.org/

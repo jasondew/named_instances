@@ -1,12 +1,5 @@
-require 'active_support'
-require 'active_support/cache'
+require "active_support"
+require "active_support/cache"
+require "active_support/core_ext/logger"
 
-class Rails
-  def self.cache
-    @@cache ||= ActiveSupport::Cache::MemoryStore.new
-  end
-
-  def self.logger
-    @@logger ||= ActiveSupport::BufferedLogger.new(STDOUT)
-  end
-end
+RAILS_CACHE = ActiveSupport::Cache::MemoryStore.new

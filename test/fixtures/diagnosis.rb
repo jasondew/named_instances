@@ -2,7 +2,7 @@ require 'rubygems'
 require 'active_record'
 
 class Diagnosis < ActiveRecord::Base
-  include NamedInstances
+  extend NamedInstances
   has_named_instances :name
 end
 

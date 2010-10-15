@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class NamedInstancesTest < Test::Unit::TestCase
   context "Named instances of an AR model" do
@@ -40,7 +40,7 @@ class NamedInstancesTest < Test::Unit::TestCase
 
     should "accept an array of naming methods" do
       Foo = Struct.new(:bar, :baz)
-      Foo.send(:include, NamedInstances)
+      Foo.send(:extend, NamedInstances)
 
       foo1 = Foo.new("abc", "def")
       foo2 = Foo.new("xyz", "zzz")
@@ -57,13 +57,14 @@ class NamedInstancesTest < Test::Unit::TestCase
 
     should "not crash if the instances can't be loaded immediately" do
       BadFoo = Struct.new(:bar, :baz)
-      BadFoo.send(:include, NamedInstances)
+      BadFoo.send(:extend, NamedInstances)
 
       BadFoo.expects(:after_save)
       BadFoo.expects(:all).raises(Exception)
 
+      Rails.expects(:logger).returns(mock(:error))
       BadFoo.has_named_instances [:bar, :baz]
-      assert_match /exception/, BadFoo.load_named_instances
+      BadFoo.load_named_instances
     end
 
   end
