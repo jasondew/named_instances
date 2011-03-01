@@ -16,9 +16,9 @@ class NamedInstancesTest < Test::Unit::TestCase
       assert_equal new_behavior, result
     end
 
-    should "raise an error if it doesn't exist at all" do
-      assert_raise ArgumentError do
-        Diagnosis.get(:test2)
+    should "not raise an error if it doesn't exist" do
+      assert_nothing_raised do
+        Diagnosis.get(:does_not_exist)
       end
     end
 
@@ -40,7 +40,7 @@ class NamedInstancesTest < Test::Unit::TestCase
 
     should "accept an array of naming methods" do
       Foo = Struct.new(:bar, :baz)
-      Foo.send(:extend, NamedInstances)
+      Foo.send(:include, NamedInstances)
 
       foo1 = Foo.new("abc", "def")
       foo2 = Foo.new("xyz", "zzz")
@@ -57,12 +57,12 @@ class NamedInstancesTest < Test::Unit::TestCase
 
     should "not crash if the instances can't be loaded immediately" do
       BadFoo = Struct.new(:bar, :baz)
-      BadFoo.send(:extend, NamedInstances)
+      BadFoo.send(:include, NamedInstances)
 
       BadFoo.expects(:after_save)
       BadFoo.expects(:all).raises(Exception)
 
-      Rails.expects(:logger).returns(mock(:error))
+      Rails.expects(:logger).returns(mock(:info))
       BadFoo.has_named_instances [:bar, :baz]
       BadFoo.load_named_instances
     end
